@@ -7,13 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 public class BlackJackApplication extends Application {
 
 //    private BlackJackController
@@ -24,7 +18,7 @@ public class BlackJackApplication extends Application {
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("black-jack.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("black-jack-start.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
