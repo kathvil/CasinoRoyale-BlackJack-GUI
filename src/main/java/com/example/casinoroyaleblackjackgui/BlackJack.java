@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 public class BlackJack {
-    static int defaultSleep = 1500;
+    static final int defaultSleep = 1500;
 
     private static ArrayList<Player> players = new ArrayList<>();
 

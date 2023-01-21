@@ -7,7 +7,7 @@ public enum Suit {
     SPADE("Spades♠");
 
 
-    String suitName;
+    final String suitName;
 
     Suit(String suitName) {
         this.suitName = suitName;
