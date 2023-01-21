@@ -34,6 +34,7 @@ public class BlackJack {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        Scanner inputBalance = new Scanner(System.in);
 
 
         /*
@@ -62,7 +63,7 @@ public class BlackJack {
         //Idee: Start balance für alle Spieler gleich?
 
         for (int i = 0; i < player.length; i++) {
-            System.out.print("Please enter your name Player" + (i + 1) + ": ");
+            System.out.print("Please enter your name Player " + (i + 1) + ": ");
             String name = "";
             isValid = false;
             while (!isValid) {
@@ -80,21 +81,21 @@ public class BlackJack {
                     input.next();
                 }
             }
-            System.out.print("Please type in your starting balance: ");
+            System.out.print("Please type in your starting balance (10$ minimum): ");
 
             isValid = false;
             double balance = 0;
             while (!isValid) {
-                if (input.hasNextDouble()) {
+                if (inputBalance.hasNextDouble()) {
                     isValid = true;
-                    balance = Math.round(input.nextDouble() * 100.0) / 100.0;
-                    if (balance <= 0) {
+                    balance = Math.round(inputBalance.nextDouble() * 100.0) / 100.0;
+                    if (balance < 10) {
                         System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
                         isValid = false;
                     }
                 } else {
                     System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
-                    input.next();
+                    inputBalance.next();
                 }
             }
             player[i] = new Player(name, balance);
@@ -114,7 +115,7 @@ public class BlackJack {
         deck.shuffle();
 
         /*
-        Place bets
+        Place bets or skip round
          */
         while (playerCount != 0) {
             for (Player p : players) {
