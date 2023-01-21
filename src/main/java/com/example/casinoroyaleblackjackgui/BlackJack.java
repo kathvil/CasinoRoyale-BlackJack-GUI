@@ -76,35 +76,36 @@ public class BlackJack {
         while (playerCount != 0) {
             for (Player p : players) {
                 if (p.getPlaying()){
-                System.out.print(p.getName() + ", place your bet or type 0 to skip this round: ");
-                isValid = false;
-                while (!isValid) {
-                    if (input.hasNextDouble()) {
-                        double currentBet = input.nextDouble();
-                        if (currentBet < 0) {
-                            p.setPlaying(false);
-                            System.out.print("Insufficient balance, please try again: ");
-                            isValid = true;
-                        } else if (currentBet == 0) {
-                            p.setPlaying(false);
-                            System.out.println(p.getName() + " skips this round");
-                            isValid = true;
-                        }
-                        else {
-                            // Sufficient Balance?
-                            if (currentBet < p.getBalance() + 1) {
-                                p.setBet(currentBet);
-                                isValid = true;
-                            } else {
+                    System.out.print(p.getName() + ", place your bet or type 0 to skip this round: ");
+                    isValid = false;
+                    while (!isValid) {
+                        if (input.hasNextDouble()) {
+                            double currentBet = input.nextDouble();
+                            if (currentBet < 0) {
+                                p.setPlaying(false);
                                 System.out.print("Insufficient balance, please try again: ");
+                                isValid = true;
+                            } else if (currentBet == 0) {
+                                p.setPlaying(false);
+                                System.out.println(p.getName() + " skips this round");
+                                isValid = true;
                             }
+                            else {
+                                // Sufficient Balance?
+                                if (currentBet < p.getBalance() + 1) {
+                                    p.setBet(currentBet);
+                                    isValid = true;
+                                } else {
+                                    System.out.print("Insufficient balance, please try again: ");
+                                }
+                            }
+                        } else {
+                            input.nextDouble();
+                            System.out.print("Please enter a valid number for your bet: ");
                         }
-                    } else {
-                        input.nextDouble();
-                        System.out.print("Please enter a valid number for your bet: ");
                     }
                 }
-            }}
+            }
             System.out.println();
 
 
