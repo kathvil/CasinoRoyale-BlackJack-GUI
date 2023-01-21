@@ -143,7 +143,7 @@ public class BlackJack {
                             }
                         } else {
                             System.out.print("Please enter a valid number for your bet: ");
-                            input.nextDouble();
+                            input.next();
 
                         }
                     }
