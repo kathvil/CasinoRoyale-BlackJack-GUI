@@ -8,6 +8,30 @@ public class BlackJack {
 
     private static ArrayList<Player> players = new ArrayList<>();
 
+    public static void sleep(int time){
+        try {
+            //time in milliseconds
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void loading(){
+        int defaultAnimationSpeed = 400;
+        //set to false to disable animations
+        if (true) {
+            sleep(defaultAnimationSpeed);
+            System.out.print(". ");
+            sleep(defaultAnimationSpeed);
+            System.out.print("\r. . ");
+            sleep(defaultAnimationSpeed);
+            System.out.print("\r. . .");
+            sleep(defaultAnimationSpeed);
+        } else {
+            System.out.print(" ");
+        }
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -39,20 +63,41 @@ public class BlackJack {
 
         for (int i = 0; i < player.length; i++) {
             System.out.print("Please enter your name Player" + (i + 1) + ": ");
-            String name = input.next();
+            String name = "";
+            isValid = false;
+            while (!isValid) {
+                if (input.hasNextInt()) {
+                    System.out.print("Please enter a name for Player " + (i + 1) + ": ");
+                    input.next();
+                } else if (input.hasNextDouble()) {
+                    System.out.print("Please enter a name for Player " + (i + 1) + ": ");
+                    input.next();
+                } else if (input.hasNext()) {
+                    isValid = true;
+                    name = input.next();
+                } else {
+                    System.out.print("Please enter a name for Player " + (i + 1) + ": ");
+                    input.next();
+                }
+            }
             System.out.print("Please type in your starting balance: ");
 
             isValid = false;
+            double balance = 0;
             while (!isValid) {
                 if (input.hasNextDouble()) {
-                    double balance = Math.round(input.nextDouble() * 100.0) / 100.0;
-                    player[i] = new Player(name, balance);
                     isValid = true;
+                    balance = Math.round(input.nextDouble() * 100.0) / 100.0;
+                    if (balance <= 0) {
+                        System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
+                        isValid = false;
+                    }
                 } else {
+                    System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
                     input.next();
-                    System.out.print("Please enter a valid number for your starting balance: ");
                 }
             }
+            player[i] = new Player(name, balance);
         }
 
         Dealer dealer = new Dealer("Dealer");
@@ -68,10 +113,8 @@ public class BlackJack {
         CardDeck deck = new CardDeck();
         deck.shuffle();
 
-        //loop here
         /*
         Place bets
-
          */
         while (playerCount != 0) {
             for (Player p : players) {
@@ -260,28 +303,5 @@ public class BlackJack {
         sleep(5000);
         }
 
-    public static void sleep(int time){
-        try {
-            //time in milliseconds
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void loading(){
-        int defaultAnimationSpeed = 400;
-        //set to false to disable animations
-        if (true) {
-            sleep(defaultAnimationSpeed);
-            System.out.print(". ");
-            sleep(defaultAnimationSpeed);
-            System.out.print("\r. . ");
-            sleep(defaultAnimationSpeed);
-            System.out.print("\r. . .");
-            sleep(defaultAnimationSpeed);
-        } else {
-            System.out.print(" ");
-        }
-    }
 
 }
