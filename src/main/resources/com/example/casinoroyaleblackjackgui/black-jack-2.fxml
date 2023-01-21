@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
-<VBox fx:id="verticalBox" alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.casinoroyaleblackjackgui.BlackJackController">
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="verticalBox" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.casinoroyaleblackjackgui.BlackJackController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
 
     <AnchorPane id="body-main" prefHeight="800.0" prefWidth="1200.0" stylesheets="@/styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <ImageView id="bg" fitHeight="687.0" fitWidth="1200.0">
-        <Image url="@/img/bg.jpg"/>
-    </ImageView>
-
-        <Text id="main-title">Welcome to Casino Royale 2.</Text>
-        <ImageView id="logo" fitHeight="150.0" fitWidth="150.0">
-            <Image url="@/img/Casino-Royale_rund.png"/>
+        <ImageView id="bg" fitHeight="687.0" fitWidth="1200.0">
+            <Image url="@/img/bg.jpg" />
         </ImageView>
-        <Text id="subtitle">lets play Blackjack.</Text>
-
-        <Text layoutX="560.0" layoutY="320.0" text="Spieleranzahl" />
-        <TextField layoutX="525.0" layoutY="340.0"  id="player_input" fx:id="playerInput" />
-
-        <Label fx:id="welcomeText"/>
-        <Button id="btn" text="Start Game" onAction="#onStartClick"/>
+        <ImageView id="logo" fitHeight="150.0" fitWidth="150.0">
+            <Image url="@/img/Casino-Royale_rund.png" />
+        </ImageView>
+        <Text id="main-title" layoutX="549.0" layoutY="288.0" text="Define your Players" textAlignment="CENTER" />
+        <Text layoutX="410.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler 2" />
+        <TextField fx:id="pName1" layoutX="488.0" layoutY="421.0" />
+        <TextField fx:id="pName2" layoutX="488.0" layoutY="460.0" />
+        <Text layoutX="488.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+        <Text layoutX="671.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Startguthaben" />
+        <TextField fx:id="balance1" layoutX="671.0" layoutY="421.0" />
+        <TextField fx:id="balance2" layoutX="671.0" layoutY="460.0" />
+      <Text layoutX="410.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler 1" />
+      <Button fx:id="btn" layoutX="562.0" layoutY="558.0" mnemonicParsing="false" onAction="#switchToScene3" text="Start Game" />
 
     </AnchorPane>
 

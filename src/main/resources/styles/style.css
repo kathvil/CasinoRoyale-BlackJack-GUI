@@ -17,26 +17,17 @@
 #main-title {
     -fx-font-size: 40px;
     -fx-font-weight: bold;
-    /*-fx-padding: 20px;*/
-    -fx-text-alignment:center;
-    /*-fx-translate-x: 360;*/
-    /*-fx-translate-y: 188;*/
 }
 
 #subtitle {
     -fx-font-size: 25px;
     -fx-font-weight: bold;
-    -fx-text-alignment:center;
-    /*-fx-translate-x: 500;*/
-    /*-fx-translate-y: 250;*/
 }
 #btn{
-    -fx-background-color: #000dff;
+    -fx-background-color: #ffffff;
     -fx-cursor: hand;
     -fx-padding: 1px;
     -fx-pref-height: 25;
     -fx-pref-width: 75;
     -fx-text-fill: black;
-    /*-fx-translate-x: 560;*/
-    /*-fx-translate-y: 388;*/
 }
