@@ -290,19 +290,24 @@ public class BlackJack {
                         p.setPlaying(false);
                     }}
                 dealer.getHand().clearHand();
-
-
-                // TODO
-        /*
-        "Change Ace" method
-        (function to Double bet if first two cards match rank, player then has two hands to play with)
-        */
             }
+
         System.out.println();
         loading();
         System.out.println("\rThe house has won (obviously) because no players are left.");
         sleep(5000);
         }
+
+        //TODO
+        /*
+        "Change Ace" method
+        (function to Double bet if first two cards match rank, player then has two hands to play with)
+
+        Dealer Logic
+
+
+        */
+
 
 
 }
