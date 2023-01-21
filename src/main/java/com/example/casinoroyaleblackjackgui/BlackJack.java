@@ -121,13 +121,12 @@ public class BlackJack {
                 if (p.getPlaying()){
                     System.out.print(p.getName() + ", place your bet or type 0 to skip this round: ");
                     isValid = false;
+                    double currentBet = 0;
                     while (!isValid) {
                         if (input.hasNextDouble()) {
-                            double currentBet = input.nextDouble();
+                            currentBet = input.nextDouble();
                             if (currentBet < 0) {
-                                p.setPlaying(false);
-                                System.out.print("Insufficient balance, please try again: ");
-                                isValid = true;
+                                System.out.print("Invalid amount, please try again: ");
                             } else if (currentBet == 0) {
                                 p.setPlaying(false);
                                 System.out.println(p.getName() + " skips this round");
@@ -139,12 +138,13 @@ public class BlackJack {
                                     p.setBet(currentBet);
                                     isValid = true;
                                 } else {
-                                    System.out.print("Insufficient balance, please try again: ");
+                                    System.out.print("You are broke :) , please try again: ");
                                 }
                             }
                         } else {
-                            input.nextDouble();
                             System.out.print("Please enter a valid number for your bet: ");
+                            input.nextDouble();
+
                         }
                     }
                 }
