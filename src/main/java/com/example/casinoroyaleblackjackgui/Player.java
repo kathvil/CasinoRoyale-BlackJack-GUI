@@ -9,6 +9,11 @@ public class Player extends Person {
     private boolean isPlaying = true;
 
 
+    // constructors
+    public Player (String name, double balance) {
+        super(name);
+        this.balance = balance;
+    }
 
     // setter & getter for balance
     public void setBalance(double balance) {
@@ -45,12 +50,6 @@ public class Player extends Person {
 //    public int getCardSum() {
 //        return
 //    }
-
-    // constructors
-    public Player (String name, double balance) {
-        super(name);
-        this.balance = balance;
-    }
 
 
     public void stand(Hand hand) {
