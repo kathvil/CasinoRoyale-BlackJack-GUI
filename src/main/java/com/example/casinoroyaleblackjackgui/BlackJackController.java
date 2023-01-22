@@ -11,8 +11,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,6 +35,8 @@ public class BlackJackController
     private TextField player1Balance;
     @FXML
     private TextField player2Balance;
+
+//    region player bet btns
     @FXML
     private Button player1bet10;
     @FXML
@@ -41,25 +44,90 @@ public class BlackJackController
     @FXML
     private Button player1bet30;
     @FXML
+    private Button player1Skip;
+    @FXML
     private Button player1Stand;
     @FXML
-
+    private Button player1Hit;
+    @FXML
     private Button player2bet10;
     @FXML
     private Button player2bet20;
     @FXML
     private Button player2bet30;
     @FXML
+    private Button player2Skip;
+//    endregion
+
+    @FXML
     private Button player2Stand;
+    @FXML
+    private Button player2Hit;
     @FXML
     private Text currentPlayer1;
     @FXML
     private Text currentPlayer2;
     @FXML
     private Text currentPlayer1Bet;
-
     @FXML
     private Text currentPlayer2Bet;
+
+    @FXML
+    private Text startPlayer1Balance;
+    @FXML
+    private Text startPlayer2Balance;
+    @FXML
+    private Text currentPlayer1Balance;
+    @FXML
+    private Text currentPlayer2Balance;
+
+    // region Player Cards
+    @FXML
+    private Text player1CardSum;
+    @FXML
+    private ImageView player1Card1;
+    @FXML
+    private ImageView player1Card2;
+    @FXML
+    private ImageView player1Card3;
+    @FXML
+    private ImageView player1Card4;
+    @FXML
+    private ImageView player1Card5;
+    @FXML
+    private ImageView player1Card6;
+
+    @FXML
+    private Text player2CardSum;
+    @FXML
+    private ImageView player2Card1;
+    @FXML
+    private ImageView player2Card2;
+    @FXML
+    private ImageView player2Card3;
+    @FXML
+    private ImageView player2Card4;
+    @FXML
+    private ImageView player2Card5;
+    @FXML
+    private ImageView player2Card6;
+    // endregion
+
+
+    @FXML
+    private Text dealerCardSum;
+    @FXML
+    private ImageView dealerCard1;
+    @FXML
+    private ImageView dealerCard2;
+    @FXML
+    private ImageView dealerCard3;
+    @FXML
+    private ImageView dealerCard4;
+    @FXML
+    private ImageView dealerCard5;
+    @FXML
+    private ImageView dealerCard6;
 
     private Stage stage;
     private Scene scene;
@@ -68,6 +136,8 @@ public class BlackJackController
     private static List<Player> players = new ArrayList<>();
 
     private static Dealer dealer = new Dealer("Dealer") ;
+
+    private static CardDeck deck = new CardDeck();
 
     public BlackJackController()
     {
@@ -115,97 +185,184 @@ public class BlackJackController
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        this.currentPlayer1.setText(playerName1.getText());
-        this.currentPlayer2.setText(playerName2.getText());
-
     }
-
-    public void startRound(ActionEvent event){
-        this.startRoundBtn.setVisible(false);
-//        this.displayRoundStartDialogBox(this.players.get(0));
-//        this.displayRoundStartDialogBox(this.players.get(1));
-
-    }
-//
-//    public void displayRoundStartDialogBox(Player player) {
-//        String playerName = player.getName();
-//        TextInputDialog dialog = new TextInputDialog("");
-//        dialog.getDialogPane().getScene().getWindow().setOnCloseRequest(event -> {
-//            event.consume();
-//        });
-//
-//        dialog.getDialogPane().lookupButton(ButtonType.OK).setOnMouseClicked(event -> {
-//            if()
-//        });
-
-//        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
-//        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setVisible(false);;
-//        dialog.setTitle("Wetteinsatz");
-//        dialog.setHeaderText( playerName + " gib deinen Wetteinsatz an:");
-//        dialog.setContentText("Wetteinsatz:");
-//
-//// Traditional way to get the response value.
-//        Optional<String> bet = dialog.showAndWait();
-//        if (bet.isPresent()){
-//            System.out.println(playerName + ", bet: " + bet.get());
-//        }
-//
-//// The Java 8 way to get the response value (with lambda expression).
-//        bet.ifPresent(name -> System.out.println("Your name: " + playerName));
-//    }
 
     // region player 1 bet
     public void setBet10Player1() {
+        startPlayer1Balance.setVisible(false);
         currentPlayer1Bet.setText("10");
         changePlayer1ButtonVisibility(false);
+        double currentBalance = players.get(0).getBalance() - 10;
+        players.get(0).setBalance(currentBalance);
+        players.get(0).setBet(10);
+        currentPlayer1Balance.textProperty().unbind();
+        String stringBalance = Double.toString(currentBalance);
+        currentPlayer1Balance.setText(stringBalance);
+        currentPlayer1Balance.setVisible(true);
     }
     public void setBet20Player1() {
+        startPlayer1Balance.setVisible(false);
         currentPlayer1Bet.setText("20");
         changePlayer1ButtonVisibility(false);
+        double currentBalance = players.get(0).getBalance() - 20;
+        players.get(0).setBalance(currentBalance);
+        players.get(0).setBet(20);
+        currentPlayer1Balance.textProperty().unbind();
+        String stringBalance = Double.toString(currentBalance);
+        currentPlayer1Balance.setText(stringBalance);
+        currentPlayer1Balance.setVisible(true);
     }
     public void setBet30Player1() {
+        startPlayer1Balance.setVisible(false);
         currentPlayer1Bet.setText("30");
         changePlayer1ButtonVisibility(false);
-    }
+        double currentBalance = players.get(0).getBalance() - 30;
+        players.get(0).setBalance(currentBalance);
+        players.get(0).setBet(30);
+        currentPlayer1Balance.textProperty().unbind();
+        String stringBalance = Double.toString(currentBalance);
+        currentPlayer1Balance.setText(stringBalance);
+        currentPlayer1Balance.setVisible(true);    }
 
     // endregion
 
     public void setBet10Player2() {
+        startPlayer2Balance.setVisible(false);
         currentPlayer2Bet.setText("10");
         changePlayer2ButtonVisibility(false);
+        double currentBalance = players.get(1).getBalance() - 10;
+        players.get(1).setBalance(currentBalance);
+        players.get(1).setBet(10);
+        currentPlayer2Balance.textProperty().unbind();
+        String stringBalance = Double.toString(currentBalance);
+        currentPlayer2Balance.setText(stringBalance);
+        currentPlayer2Balance.setVisible(true);
     }
     public void setBet20Player2() {
+        startPlayer2Balance.setVisible(false);
         currentPlayer2Bet.setText("20");
         changePlayer2ButtonVisibility(false);
+        double currentBalance = players.get(1).getBalance() - 20;
+        players.get(1).setBalance(currentBalance);
+        players.get(1).setBet(20);
+        currentPlayer2Balance.textProperty().unbind();
+        String stringBalance = Double.toString(currentBalance);
+        currentPlayer2Balance.setText(stringBalance);
+        currentPlayer2Balance.setVisible(true);
     }
     public void setBet30Player2() {
+        startPlayer2Balance.setVisible(false);
         currentPlayer2Bet.setText("30");
         changePlayer2ButtonVisibility(false);
+        double currentBalance = players.get(1).getBalance() - 30;
+        players.get(1).setBalance(currentBalance);
+        players.get(1).setBet(30);
+        currentPlayer2Balance.textProperty().unbind();
+        String stringBalance = Double.toString(currentBalance);
+        currentPlayer2Balance.setText(stringBalance);
+        currentPlayer2Balance.setVisible(true);
+    }
+
+    public void skipRoundPlayer1(){
+        players.get(0).setPlaying(false);
+        changePlayer1ButtonVisibility(false);
+        currentPlayer1Bet.setVisible(false);
+        player1Stand.setVisible(false);
+        player1Hit.setVisible(false);
+    }
+    public void skipRoundPlayer2(){
+        players.get(1).setPlaying(false);
+        changePlayer2ButtonVisibility(false);
+        currentPlayer2Bet.setVisible(false);
+        player2Stand.setVisible(false);
+        player2Hit.setVisible(false);
     }
 
 
+    public void startRound(ActionEvent event){
+
+        this.startRoundBtn.setVisible(false);
+        // hit stand buttons visible
+        Player p1 = players.get(0);
+        Player p2 = players.get(1);
+
+        if (p1.getPlaying()) {
+            player1Stand.setVisible(true);
+            player1Hit.setVisible(true);
+        }
+        if (p2.getPlaying()) {
+            player2Stand.setVisible(true);
+            player2Hit.setVisible(true);
+        }
+        // If both players skip
+        if (!p1.getPlaying() && !p2.getPlaying()) {
+            changePlayer1ButtonVisibility(true);
+            changePlayer2ButtonVisibility(true);
+        }
+
+        //evt. deck neu auffüllen / initalisieren
+        deck.shuffle();
+
+        deck.addCardFromDeck(dealer.getHand());
+        deck.addCardFromDeck(dealer.getHand());
+
+        dealerCard1.setImage(new Image("img/cards/" + dealer.getHand().getCardAtIndex(0).imageFilePath()));
+        dealerCard2.setImage(new Image("img/cards/" + dealer.getHand().getCardAtIndex(1).imageFilePath()));
+        dealerCardSum.setText(dealer.getHand().getSum() + "");
+
+        if (p1.getPlaying()) {
+            deck.addCardFromDeck(p1.getHand());
+            deck.addCardFromDeck(p1.getHand());
+            player1Card1.setImage(new Image("img/cards/" + p1.getHand().getCardAtIndex(0).imageFilePath()));
+            player1Card2.setImage(new Image("img/cards/" + p1.getHand().getCardAtIndex(1).imageFilePath()));
+            player1CardSum.setText(p1.getHand().getSum() + "");
+        }
+
+        if (p2.getPlaying()) {
+            deck.addCardFromDeck(p2.getHand());
+            deck.addCardFromDeck(p2.getHand());
+            player2Card1.setImage(new Image("img/cards/" + p2.getHand().getCardAtIndex(0).imageFilePath()));
+            player2Card2.setImage(new Image("img/cards/" + p2.getHand().getCardAtIndex(1).imageFilePath()));
+            player2CardSum.setText(p2.getHand().getSum() + "");
+        }
+    }
+
+
+    // TODO: Hit or Stand Methods
     public void setStandPlayer1() {
         currentPlayer1Bet.setVisible(true);
     }
     public void setStandPlayer2() {
     }
 
+
+    public void hitFirstPlayer() {
+    }
+    public void hitSecondPlayer() {
+    }
+
+
+
     public void changePlayer1ButtonVisibility(boolean value) {
         player1bet10.setVisible(value);
         player1bet20.setVisible(value);
         player1bet30.setVisible(value);
-        player1Stand.setVisible(value);
+        player1Skip.setVisible(value);
         currentPlayer1Bet.setVisible(!value);
         // hit stand buttons visible
+        player1Stand.setVisible(!value);
+        player1Hit.setVisible(!value);
     }
     public void changePlayer2ButtonVisibility(boolean value) {
         player2bet10.setVisible(value);
         player2bet20.setVisible(value);
         player2bet30.setVisible(value);
-        player2Stand.setVisible(value);
+        player2Skip.setVisible(value);
         currentPlayer2Bet.setVisible(!value);
         // hit stand buttons visible
+        player2Stand.setVisible(!value);
+        player2Hit.setVisible(!value);
+
     }
 
    public String getFirstPlayerName() {
