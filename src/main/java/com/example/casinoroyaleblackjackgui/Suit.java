@@ -17,8 +17,5 @@ public enum Suit {
         return suitName;
     }
 
-    public String getSuitName() {
-        return suitName;
-    }
 
 }

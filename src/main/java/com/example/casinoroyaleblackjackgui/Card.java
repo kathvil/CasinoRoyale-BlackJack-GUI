@@ -4,7 +4,6 @@ public class Card {
 
     private Rank rank;
     final private Suit suit;
-    private int value;
 
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
@@ -19,10 +18,6 @@ public class Card {
     }
     public int getValue() {
         return rank.rankValue;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     @Override

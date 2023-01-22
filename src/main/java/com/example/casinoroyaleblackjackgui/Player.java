@@ -47,18 +47,6 @@ public class Player extends Person {
         return isPlaying;
     }
 
-//    public int getCardSum() {
-//        return
-//    }
-
-
-    public void stand(Hand hand) {
-        setStanding(true);
-    }
-
-    public void bet(double amount) {
-
-    }
 
     @Override
     public String toString() {

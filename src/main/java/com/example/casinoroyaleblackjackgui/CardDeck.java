@@ -8,15 +8,13 @@ public class CardDeck {
 
     public CardDeck() {
         this.deck = new ArrayList<>();
-            for (Suit suit : Suit.values()) {
-                for (Rank rank : Rank.values()) {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                if (!(rank == Rank.LowACE)) {
                     deck.add(new Card(rank, suit));
+                }
             }
         }
-    }
-
-    public ArrayList<Card> getDeck() {
-        return deck;
     }
 
     //Check Deck

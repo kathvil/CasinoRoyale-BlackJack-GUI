@@ -209,15 +209,30 @@ public class BlackJack {
                                         break;
                                     }
                                     //change ace method here
+
+
                                     if (p.getHand().getSum() > 21) {
-                                        System.out.println("Bust!");
-                                        busted = true;
-                                        p.setStanding(true);
-                                        break;
+                                        if (p.getHand().checkAce()) {
+                                            while (p.getHand().getSum() > 21) {
+                                                p.getHand().changeAce();
+                                                p.getHand().setSum(p.getHand().getSum() - 10);
+                                                System.out.println("Your Ace has been changed to LowAce. Your new Hand's value is "+ (p.getHand().getSum()));
+                                                if (p.getHand().getSum() == 21) {
+                                                    p.setStanding(true);
+                                                }
+                                            }
+                                        } else {
+                                            System.out.println("Bust!");
+                                            busted = true;
+                                            p.setStanding(true);
+                                            break;
+                                        }
                                     }
                                     //new choice
-                                    System.out.print(p.getName() + ", type 'h' to hit or 's' to stand: ");
-                                    break;
+                                    if (p.getHand().getSum() < 21) {
+                                        System.out.print(p.getName() + ", type 'h' to hit or 's' to stand: ");
+                                        break;
+                                    }
                                 case "s":
                                     p.setStanding(true);
                                     break;
