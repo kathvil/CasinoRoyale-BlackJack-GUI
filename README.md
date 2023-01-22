@@ -48,13 +48,3 @@ Following rules are implemented for different scenarios during the game:
 ## 🏃 TO RUN THE GAME VIA JAVAFX:
     • Run BlackJackApplication
     • needs JDK 17
-
-### OPEN TODOS / IMPLEMENTATIONS
-
-    • "Change Ace" method // choose ACE value (1 or 11)
-    • function to Double bet if first two cards match rank, player then has two hands to play with
-
-
-### OPEN IDEAS ABOUT GAME LOGIC 🤔
-
-    • Same Starting Balance for all Players
