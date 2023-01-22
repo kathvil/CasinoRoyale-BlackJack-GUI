@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+
 <VBox fx:id="verticalBox" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.casinoroyaleblackjackgui.BlackJackController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -23,12 +24,12 @@
         </ImageView>
         <Text id="main-title" layoutX="549.0" layoutY="288.0" text="Define your Players" textAlignment="CENTER" />
         <Text layoutX="410.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler 2" />
-        <TextField fx:id="playerName1" layoutX="488.0" layoutY="421.0" />
-        <TextField fx:id="playerName2" layoutX="488.0" layoutY="460.0" />
+        <TextField fx:id="playerName1" layoutX="488.0" layoutY="421.0" text="Spieler 1"/>
+        <TextField fx:id="playerName2" layoutX="488.0" layoutY="460.0" text="Spieler 2"/>
         <Text layoutX="488.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
         <Text layoutX="671.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Startguthaben" />
-        <TextField fx:id="player1Balance" layoutX="671.0" layoutY="421.0" />
-        <TextField fx:id="player2Balance" layoutX="671.0" layoutY="460.0" />
+        <TextField fx:id="player1Balance" layoutX="671.0" layoutY="421.0" text="100" />
+        <TextField fx:id="player2Balance" layoutX="671.0" layoutY="460.0" text="100" />
       <Text layoutX="410.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler 1" />
       <Button fx:id="btn" layoutX="562.0" layoutY="558.0" mnemonicParsing="false" onAction="#switchToScene3" text="Start Game" />
 
