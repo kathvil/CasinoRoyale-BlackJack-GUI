@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 <VBox fx:id="verticalBox" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.casinoroyaleblackjackgui.BlackJackController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -25,8 +24,8 @@
 
         <Text layoutX="556.0" layoutY="373.0" text="Spieleranzahl" />
 
-      <Button layoutX="512.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchToScene2" text="1 Spieler" />
-      <Button layoutX="609.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchToScene2" text="2 Spieler" />
+      <Button layoutX="505.0" layoutY="412.0" mnemonicParsing="false" text="1 Spieler (currently not available)" />
+      <Button layoutX="569.0" layoutY="455.0" mnemonicParsing="false" onAction="#switchToScene2" text="2 Spieler" />
       <Text id="main-title" layoutX="356.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Casino Royale">
          <font>
             <Font size="40.0" />

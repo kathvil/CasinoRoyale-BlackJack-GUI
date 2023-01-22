@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 <VBox fx:id="verticalBox" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.casinoroyaleblackjackgui.BlackJackController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -20,33 +20,46 @@
             <Image url="@/img/bg.jpg" />
         </ImageView>
       <Circle fill="#ffffff00" layoutX="600.0" layoutY="150.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
-      <Circle fill="#ffffff00" layoutX="261.0" layoutY="502.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
-      <Circle fill="#ffffff00" layoutX="903.0" layoutY="502.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+      <Circle fill="#ffffff00" layoutX="261.0" layoutY="470.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+      <Circle fill="#ffffff00" layoutX="903.0" layoutY="471.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
       <Text fill="WHITE" layoutX="566.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEALER" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="currentP1" fill="WHITE" layoutX="197.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currentplayer1">
+      <Text fx:id="currentP1" fill="WHITE" layoutX="197.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currentplayer1">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="currentP2" fill="WHITE" layoutX="839.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currentplayer2">
+      <Text fx:id="currentP2" fill="WHITE" layoutX="839.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currentplayer2">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="currentP11" fill="WHITE" layoutX="231.0" layoutY="645.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P1sum">
+      <Text fx:id="currentP11" fill="WHITE" layoutX="231.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P1sum">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="currentP111" fill="WHITE" layoutX="873.0" layoutY="644.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P2sum">
+      <Text fx:id="currentP111" fill="WHITE" layoutX="873.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P2sum">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
+      <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" onAction="#startRound" text="START ROUND" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="player1bet10" layoutX="109.0" layoutY="638.0" mnemonicParsing="false" text="Bet 10" />
+      <Button fx:id="player2bet10" layoutX="753.0" layoutY="638.0" mnemonicParsing="false" text="Bet 10" />
+      <Button fx:id="player1bet20" layoutX="181.0" layoutY="638.0" mnemonicParsing="false" text="Bet 20" />
+      <Button fx:id="player2bet20" layoutX="823.0" layoutY="638.0" mnemonicParsing="false" text="Bet 20" />
+      <Button fx:id="player1bet30" layoutX="249.0" layoutY="638.0" mnemonicParsing="false" text="Bet 30" />
+      <Button fx:id="player2bet30" layoutX="893.0" layoutY="638.0" mnemonicParsing="false" text="Bet 30" />
+      <Button fx:id="player2Stand" layoutX="959.0" layoutY="638.0" mnemonicParsing="false" text="Stand" />
+      <Button fx:id="player1Stand" layoutX="314.0" layoutY="638.0" mnemonicParsing="false" text="Stand" />
 
     </AnchorPane>
 
