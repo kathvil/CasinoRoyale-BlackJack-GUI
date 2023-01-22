@@ -40,6 +40,7 @@ public class Player extends Person {
         return isStanding;
     }
 
+
     public void setPlaying(boolean playing) {
         isPlaying = playing;
     }

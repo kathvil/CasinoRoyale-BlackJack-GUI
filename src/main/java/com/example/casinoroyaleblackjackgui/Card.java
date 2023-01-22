@@ -19,7 +19,7 @@ public class Card {
     }
 
     public String imageFilePath() {
-        return this.suit.suitName + "-" + this.rank.rankName + ".svg";
+        return this.suit.suitName + "-" + this.rank.rankName + ".png";
     }
 
     public String formatSuit(Suit suit) {

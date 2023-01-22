@@ -12,6 +12,9 @@ public class Hand {
         sum = 0;
     }
 
+    public Card getCardAtIndex(int index){
+        return hand.get(index);
+    }
     public int getSum() {
         return sum;
     }

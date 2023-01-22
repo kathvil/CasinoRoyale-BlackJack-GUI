@@ -22,16 +22,16 @@
         <ImageView id="logo" fitHeight="150.0" fitWidth="150.0">
             <Image url="@/img/Casino-Royale_rund.png" />
         </ImageView>
-        <Text id="main-title" layoutX="549.0" layoutY="288.0" text="Define your Players" textAlignment="CENTER" />
+        <Text id="main-title" layoutX="537.0" layoutY="288.0" text="Define your Players" textAlignment="CENTER" />
         <Text layoutX="410.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler 2" />
-        <TextField fx:id="playerName1" layoutX="488.0" layoutY="421.0" text="Spieler 1"/>
-        <TextField fx:id="playerName2" layoutX="488.0" layoutY="460.0" text="Spieler 2"/>
+        <TextField fx:id="playerName1" layoutX="488.0" layoutY="421.0" text="Spieler 1" />
+        <TextField fx:id="playerName2" layoutX="488.0" layoutY="460.0" text="Spieler 2" />
         <Text layoutX="488.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
         <Text layoutX="671.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Startguthaben" />
         <TextField fx:id="player1Balance" layoutX="671.0" layoutY="421.0" text="100" />
         <TextField fx:id="player2Balance" layoutX="671.0" layoutY="460.0" text="100" />
       <Text layoutX="410.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler 1" />
-      <Button fx:id="btn" layoutX="562.0" layoutY="558.0" mnemonicParsing="false" onAction="#switchToScene3" text="Start Game" />
+      <Button fx:id="btn" layoutX="562.0" layoutY="538.0" mnemonicParsing="false" onAction="#switchToScene3" styleClass="btn" text="Start Game" />
 
     </AnchorPane>
 
