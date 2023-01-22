@@ -29,8 +29,6 @@ public class CardDeck {
         return nextCard;
     }
 
-//    Logik nach Deck verschoben -> "Seperation of Concern"
-//    Model Klassen (Hand) sollten so wenig Logik wie möglich enthalten,
     public void addCardFromDeck(Hand hand) {
         Card newCard = this.drawCard();
         hand.setSum(hand.getSum()+newCard.getValue());
@@ -60,8 +58,5 @@ public class CardDeck {
         }
         return output;
     }
-
-
-
 }
 
