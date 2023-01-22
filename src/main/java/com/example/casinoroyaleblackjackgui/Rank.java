@@ -1,7 +1,7 @@
 package com.example.casinoroyaleblackjackgui;
 
 public enum Rank {
-    // lowACE("lowAce",1),
+    LowACE("lowAce",1),
     ACE("Ace", 11),
     TWO("Two", 2),
     THREE("Three", 3),
@@ -25,14 +25,6 @@ public enum Rank {
     }
 
     public String toString(){
-        return rankName;
-    }
-
-    public int getRankValue() {
-        return rankValue;
-    }
-
-    public String getRankName() {
         return rankName;
     }
 

@@ -8,15 +8,13 @@ public class CardDeck {
 
     public CardDeck() {
         this.deck = new ArrayList<>();
-            for (Suit suit : Suit.values()) {
-                for (Rank rank : Rank.values()) {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                if (!(rank == Rank.LowACE)) {
                     deck.add(new Card(rank, suit));
+                }
             }
         }
-    }
-
-    public ArrayList<Card> getDeck() {
-        return deck;
     }
 
     //Check Deck
@@ -31,8 +29,6 @@ public class CardDeck {
         return nextCard;
     }
 
-//    Logik nach Deck verschoben -> "Seperation of Concern"
-//    Model Klassen (Hand) sollten so wenig Logik wie möglich enthalten,
     public void addCardFromDeck(Hand hand) {
         Card newCard = this.drawCard();
         hand.setSum(hand.getSum()+newCard.getValue());
@@ -62,8 +58,5 @@ public class CardDeck {
         }
         return output;
     }
-
-
-
 }
 

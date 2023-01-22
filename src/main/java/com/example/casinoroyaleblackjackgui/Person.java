@@ -10,27 +10,15 @@ public abstract class Person {
         this.hand = new Hand();
     }
 
-    // setter & getter for name
-    public void setName(String name) {
-        this.name = name;
-    }
+    // getter for name
     public String getName() {
         return name;
     }
 
-    // setter & getter for hand
-    public void setHand(Hand hand) {
-        this.hand = hand;
-    }
+    // getter for hand
     public Hand getHand() {
         return hand;
     }
 
 
-    // TODO
-    public void hit(Card card) {
-
-
-
-    }
 }
