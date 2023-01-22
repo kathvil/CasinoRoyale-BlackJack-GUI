@@ -18,10 +18,6 @@ public class Card {
         return rank.rankValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
     public String imageFilePath() {
         return this.suit.suitName + "-" + this.rank.rankName + ".svg";
     }
