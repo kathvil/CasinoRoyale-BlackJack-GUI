@@ -31,24 +31,43 @@ public class Hand {
     }
 
     public void changeAce() {
+        for (Card c : hand) {
+            if (c.getValue() == 11) {
+                Card lowAce = new Card(Rank.LowACE, c.getSuit());
+                hand.set(hand.indexOf(c), lowAce);
+                break;
+            }
         }
+    }
+
+    public boolean checkAce() {
+        boolean checkForAce = false;
+        for (Card c : hand) {
+            if (c.getValue() == 11) {
+                checkForAce = true;
+                break;
+            }
+        }
+        return checkForAce;
+    }
 
     @Override
     public String toString() {
         String cardsInHand = "";
         int counter = hand.size();
-        for(Card card : hand){
-            if (counter <= 1){
-            cardsInHand += card;
+        for (Card card : hand) {
+            if (counter <= 1) {
+                cardsInHand += card;
             } else {
                 cardsInHand += card + " - ";
             }
-            counter --;
+            counter--;
         }
         return cardsInHand + " => " + getSum();
     }
 
-    public void addCardToHand(Card newCard) {
+    public void addCardToHand (Card newCard){
         this.hand.add(newCard);
     }
 }
+

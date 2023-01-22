@@ -315,13 +315,7 @@ public class BlackJack {
         }
 
         //TODO
-        /*
-        "Change Ace" method
-        (function to Double bet if first two cards match rank, player then has two hands to play with)
-
-        Dealer Logic
-
-
+        /*Dealer Logic
         */
 
 
