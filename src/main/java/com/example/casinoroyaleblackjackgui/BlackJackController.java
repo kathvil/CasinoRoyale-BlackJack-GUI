@@ -35,6 +35,8 @@ public class BlackJackController
     private TextField player1Balance;
     @FXML
     private TextField player2Balance;
+
+//    region player bet btns
     @FXML
     private Button player1bet10;
     @FXML
@@ -55,6 +57,8 @@ public class BlackJackController
     private Button player2bet30;
     @FXML
     private Button player2Skip;
+//    endregion
+
     @FXML
     private Button player2Stand;
     @FXML
@@ -277,10 +281,6 @@ public class BlackJackController
 
     public void startRound(ActionEvent event){
 
-
-        player1Card1.setImage(new Image("img/cards/Clubs-Two.png"));
-
-
         this.startRoundBtn.setVisible(false);
         // hit stand buttons visible
         Player p1 = players.get(0);
@@ -325,42 +325,10 @@ public class BlackJackController
             player2Card2.setImage(new Image("img/cards/" + p2.getHand().getCardAtIndex(1).imageFilePath()));
             player2CardSum.setText(p2.getHand().getSum() + "");
         }
-
-
-
-
-//        this.displayRoundStartDialogBox(this.players.get(0));
-//        this.displayRoundStartDialogBox(this.players.get(1));
-
     }
-//
-//    public void displayRoundStartDialogBox(Player player) {
-//        String playerName = player.getName();
-//        TextInputDialog dialog = new TextInputDialog("");
-//        dialog.getDialogPane().getScene().getWindow().setOnCloseRequest(event -> {
-//            event.consume();
-//        });
-//
-//        dialog.getDialogPane().lookupButton(ButtonType.OK).setOnMouseClicked(event -> {
-//            if()
-//        });
 
-//        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
-//        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setVisible(false);;
-//        dialog.setTitle("Wetteinsatz");
-//        dialog.setHeaderText( playerName + " gib deinen Wetteinsatz an:");
-//        dialog.setContentText("Wetteinsatz:");
-//
-//// Traditional way to get the response value.
-//        Optional<String> bet = dialog.showAndWait();
-//        if (bet.isPresent()){
-//            System.out.println(playerName + ", bet: " + bet.get());
-//        }
-//
-//// The Java 8 way to get the response value (with lambda expression).
-//        bet.ifPresent(name -> System.out.println("Your name: " + playerName));
-//    }
 
+    // TODO: Hit or Stand Methods
     public void setStandPlayer1() {
         currentPlayer1Bet.setVisible(true);
     }
