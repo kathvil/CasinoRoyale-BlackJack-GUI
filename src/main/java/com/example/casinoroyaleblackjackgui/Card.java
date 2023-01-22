@@ -18,17 +18,18 @@ public class Card {
         return rank.rankValue;
     }
 
+
     public String imageFilePath() {
         return this.suit.suitName + "-" + this.rank.rankName + ".png";
     }
 
     public String formatSuit(Suit suit) {
         switch(suit) {
-            case CLUB: return "Clubs♣";
-            case DIAMOND: return "Diamonds♦";
-            case HEART: return "Hearts♥";
+            case CLUB: return "Clubs ♣";
+            case DIAMOND: return "Diamonds ♦";
+            case HEART: return "Hearts ♥";
             default:
-                return "Spades♠";
+                return "Spades ♠";
         }
     }
 

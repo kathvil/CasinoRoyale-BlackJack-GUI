@@ -1,7 +1,6 @@
 package com.example.casinoroyaleblackjackgui;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class BlackJack {
@@ -37,12 +36,13 @@ public class BlackJack {
         Scanner input = new Scanner(System.in);
         Scanner inputBalance = new Scanner(System.in);
 
-
         /*
-        Initialization of Players from 13-60
+        Initialization of Players
          */
+
+        // Set Number of players
         System.out.print("Welcome to Black Jack!\n" +
-                "How many players will join this game? Please type in a number from 1-10: ");
+                "How many players will join this game? Please enter a number from 1-10: ");
         boolean isValid = false;
         int playerCount = 0;
         while (!isValid) {
@@ -58,13 +58,12 @@ public class BlackJack {
                 System.out.print("Please enter a valid number from 1-10: ");
             }
         }
-
         Player[] player = new Player[playerCount];
 
-        //Idee: Start balance für alle Spieler gleich?
 
+        // Set Player name
         for (int i = 0; i < player.length; i++) {
-            System.out.print("Please enter your name Player " + (i + 1) + ": ");
+            System.out.print("Please enter a name for Player " + (i + 1) + ": ");
             String name = "";
             isValid = false;
             while (!isValid) {
@@ -77,13 +76,21 @@ public class BlackJack {
                 } else if (input.hasNext()) {
                     isValid = true;
                     name = input.next();
-                } else {
-                    System.out.print("Please enter a name for Player " + (i + 1) + ": ");
-                    input.next();
+
+                    // prevent input of identical names
+                    for (Player p1 : players) {
+                        if (p1.getName().equals(name)) {
+                            System.out.println("This name is already taken!");
+                            isValid = false;
+                            System.out.print("Please enter a name for Player " + (i + 1) + ": ");
+                            break;
+                        }
+                    }
                 }
             }
-            System.out.print("Please type in your starting balance (10$ minimum): ");
 
+            // Set Player balance
+            System.out.print("Please type in your starting balance (10€ minimum): ");
             isValid = false;
             double balance = 0;
             while (!isValid) {
@@ -91,37 +98,42 @@ public class BlackJack {
                     isValid = true;
                     balance = Math.round(inputBalance.nextDouble() * 100.0) / 100.0;
                     if (balance < 10) {
-                        System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
+                        System.out.print("Please enter a valid number for your starting balance (10€ minimum): ");
                         isValid = false;
                     }
                 } else {
-                    System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
+                    System.out.print("Please enter a valid number for your starting balance (10€ minimum): ");
                     inputBalance.next();
                 }
             }
             player[i] = new Player(name, balance);
+            players.add(player[i]);
         }
 
+        /*
+        Display all players and their balances
+         */
         Dealer dealer = new Dealer("Dealer");
-        players.addAll(List.of(player));
         System.out.println("The game starts with following players: ");
         System.out.println();
         System.out.println(players);
         System.out.println();
 
         /*
-        Creating the Deck
+        Generating the Card Deck
          */
         CardDeck deck = new CardDeck();
         deck.shuffle();
 
-        /*
-        Place bets or skip round
-         */
+
         while (playerCount != 0) {
+
+            /*
+            Place bets or skip round
+            */
             for (Player p : players) {
                 if (p.getPlaying()){
-                    System.out.print(p.getName() + ", place your bet or type 0 to skip this round: ");
+                    System.out.print(p.getName() + ", place your bet or type \"0\" to skip this round: ");
                     isValid = false;
                     double currentBet = 0;
                     while (!isValid) {
@@ -154,21 +166,32 @@ public class BlackJack {
             System.out.println();
 
 
-        /*
-        Erstes Kartenpaar wird ausgeteilt
-         */
+            /*
+            Deal first pair of cards
+            */
             for (int i = 0; i < 2; i++) {
                 for (Player p : players) {
                     if (p.getPlaying()) {
+                        if (deck.checkDeck()) {
+                            deck = new CardDeck();
+                            deck.shuffle();
+                        }
                         deck.addCardFromDeck(p.getHand());
                     }
                 }
+                if (deck.checkDeck()) {
+                    deck = new CardDeck();
+                    deck.shuffle();
+                }
                 deck.addCardFromDeck(dealer.getHand());
             }
-            String dealersFirst = dealer.getName() + " " + dealer.getHand();
-            int indexOfMinus = dealersFirst.indexOf("-");
-            System.out.println(dealersFirst.substring(0, indexOfMinus) + " - [Hidden] (?)"); // Zweite Karte verdeckt
 
+            // Hide dealer's second card
+            String dealersFirst = dealer.getName() + " " + dealer.getHand();
+            int indexOfMinus = dealersFirst.indexOf("+");
+            System.out.println(dealersFirst.substring(0, indexOfMinus) + "+ [Hidden Card] (?)");
+
+            // Display all hands
             for (Player p : players) {
                 if (p.getPlaying()) {
                     System.out.println(p.getName() + " " + p.getHand());
@@ -176,7 +199,9 @@ public class BlackJack {
             }
             System.out.println();
 
-            // Spielrunden
+            /*
+            Hit or Stand
+             */
             int counter = 0;
             for (Player p : players) {
                 if (p.getPlaying()) {
@@ -195,28 +220,28 @@ public class BlackJack {
                             String standOrHit = input.next();
                             switch (standOrHit) {
                                 case "h":
-                                    //fetch a new card
+                                    // Hit: player receives additional card
                                     if (deck.checkDeck()) {
                                         deck = new CardDeck();
                                         deck.shuffle();
                                     }
                                     deck.addCardFromDeck(p.getHand());
                                     loading();
-                                    //print hand
+
+                                    // Print player hand
                                     System.out.println("\r" + p.getName() + " " + p.getHand());
                                     if (p.getHand().getSum() == 21) {
                                         p.setStanding(true);
                                         break;
                                     }
-                                    //change ace method here
 
-
+                                    // Change Ace from 11 to 1
                                     if (p.getHand().getSum() > 21) {
                                         if (p.getHand().checkAce()) {
                                             while (p.getHand().getSum() > 21) {
                                                 p.getHand().changeAce();
                                                 p.getHand().setSum(p.getHand().getSum() - 10);
-                                                System.out.println("Your Ace has been changed to LowAce. Your new Hand's value is "+ (p.getHand().getSum()));
+                                                System.out.println("Your Ace has been converted to LowAce =>  your new hand-value is "+ (p.getHand().getSum()));
                                                 if (p.getHand().getSum() == 21) {
                                                     p.setStanding(true);
                                                 }
@@ -228,11 +253,13 @@ public class BlackJack {
                                             break;
                                         }
                                     }
-                                    //new choice
+                                    // New choice
                                     if (p.getHand().getSum() < 21) {
                                         System.out.print(p.getName() + ", type 'h' to hit or 's' to stand: ");
                                         break;
                                     }
+
+                                // Stand: player locks hand
                                 case "s":
                                     p.setStanding(true);
                                     break;
@@ -251,73 +278,87 @@ public class BlackJack {
                     p.setStanding(false);
                     sleep(defaultSleep);
                     System.out.println();
-                }/*else here*/}
-                if (dealer.getHand().getBlackjack()) {
-                    System.out.println("Dealer scored Blackjack!");
                 }
-                while (dealer.getHand().getSum() <= 17) {
-                    if (deck.checkDeck()) {
-                        deck = new CardDeck();
-                        deck.shuffle();
+            }
+            if (dealer.getHand().getBlackjack()) {
+                System.out.println("Dealer scored Blackjack!");
+            }
+            while (dealer.getHand().getSum() <= 17) {
+                if (deck.checkDeck()) {
+                    deck = new CardDeck();
+                    deck.shuffle();
+                }
+                System.out.println("Dealer hits...");
+                loading();
+                deck.addCardFromDeck(dealer.getHand());
+                System.out.println("\r" + dealer.getHand());
+            }
+            // Change Dealer's Ace from 11 to 1
+            if (dealer.getHand().getSum() > 21) {
+                if (dealer.getHand().checkAce()) {
+                    while (dealer.getHand().getSum() > 21) {
+                        dealer.getHand().changeAce();
+                        dealer.getHand().setSum(dealer.getHand().getSum() - 10);
+                        System.out.println("The Dealer's Ace has been converted to LowAce =>  new hand-value is "+ (dealer.getHand().getSum()));
                     }
-                    System.out.println("Dealer hits...");
-                    loading();
-                    deck.addCardFromDeck(dealer.getHand());
-                    System.out.println("\r" + dealer.getHand());
-                }
-                /* change ace for dealer here */
-                if (dealer.getHand().getSum() > 21) {
+                } else {
                     System.out.println("Dealer busts!");
                 }
-                sleep(defaultSleep);
-                // End of Round
-                //System.out.println();
-                System.out.println("Dealer = " + dealer.getHand() + " ( = " + dealer.getHand().getSum() + " )");
-                System.out.println();
+            }
+            sleep(defaultSleep);
 
-                for (Player p : players) {
-                    if (p.getPlaying()){
-                    System.out.println(p.getHand() + " ( = " + p.getHand().getSum() + " )");
+            // End of Round
+            System.out.println();
+            System.out.println("--- END OF ROUND ---");
+            System.out.println();
+            System.out.println("Dealer = " + dealer.getHand());
+            System.out.println();
+
+            /*
+            Compare hands and declare winners & losers
+            */
+            for (Player p : players) {
+                if (p.getPlaying()){
+                    System.out.println(p.getHand());
                     if (p.getHand().checkIfBusted() || p.getHand().getSum() < dealer.getHand().getSum() && !p.getHand().getBlackjack() && !dealer.getHand().checkIfBusted()) {
-                        System.out.println(p.getName() + " looses!");
+                        System.out.println(p.getName() + " loses " + p.getBet() + "€");
                         p.setBalance(p.getBalance() - p.getBet());
                     } else if (!p.getHand().checkIfBusted() && p.getHand().getSum() > dealer.getHand().getSum() && !p.getHand().getBlackjack()) {
-                        System.out.println(p.getName() + " wins!");
+                        System.out.println(p.getName() + " wins " + p.getBet() + "€");
                         p.setBalance(p.getBalance() + p.getBet());
                     } else if (!p.getHand().checkIfBusted() && dealer.getHand().checkIfBusted()) {
-                        System.out.println(p.getName() + " wins!");
+                        System.out.println(p.getName() + " wins " + p.getBet() + "€");
                         p.setBalance(p.getBalance() + p.getBet());
                     } else if (p.getHand().getBlackjack()) {
-                        System.out.println(p.getName() + " scored a Blackjack!");
+                        System.out.println(p.getName() + " scored a Blackjack and wins " + (p.getBet()*1.5) + "€");
                         p.setBalance(p.getBalance() + (p.getBet() * 1.5));
                     } else if (p.getHand().getSum() == dealer.getHand().getSum()) {
                         System.out.println(p.getName() + ": Push! Bet returned.");
-                        // p.setBalance(p.getBalance() + p.getBet()); nicht nötig
                     }
                     sleep(defaultSleep);
                     System.out.println();
-                }}
-                System.out.println(players);
-                for (Player p : players) {
-                    p.getHand().clearHand();
-                    if (p.getBalance() > 0){ p.setPlaying(true);
-                }else{
-                        playerCount --;
-                        p.setPlaying(false);
-                    }}
-                dealer.getHand().clearHand();
+                }
             }
+            System.out.println(players);
+            System.out.println();
+            for (Player p : players) {
+                p.getHand().clearHand();
+                if (p.getBalance() > 0){
+                    p.setPlaying(true);
+                } else {
+                    if (p.getPlaying()) {
+                        playerCount--;
+                        p.setPlaying(false);
+                    }
+                }
+            }
+            dealer.getHand().clearHand();
+        }
 
+        // All players are out of money
         System.out.println();
         loading();
         System.out.println("\rThe house has won (obviously) because no players are left.");
         sleep(5000);
-        }
-
-        //TODO
-        /*Dealer Logic
-        */
-
-
-
+    }
 }

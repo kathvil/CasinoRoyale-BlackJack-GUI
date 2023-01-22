@@ -19,6 +19,4 @@ public abstract class Person {
     public Hand getHand() {
         return hand;
     }
-
-
 }
