@@ -18,9 +18,6 @@ public class Card {
         return rank.rankValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
 
     public String imageFilePath() {
         return this.suit.suitName + "-" + this.rank.rankName + ".svg";
@@ -28,11 +25,11 @@ public class Card {
 
     public String formatSuit(Suit suit) {
         switch(suit) {
-            case CLUB: return "Clubs♣";
-            case DIAMOND: return "Diamonds♦";
-            case HEART: return "Hearts♥";
+            case CLUB: return "Clubs ♣";
+            case DIAMOND: return "Diamonds ♦";
+            case HEART: return "Hearts ♥";
             default:
-                return "Spades♠";
+                return "Spades ♠";
         }
     }
 

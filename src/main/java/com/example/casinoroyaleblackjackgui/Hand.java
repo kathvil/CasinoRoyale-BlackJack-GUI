@@ -59,11 +59,11 @@ public class Hand {
             if (counter <= 1) {
                 cardsInHand += card;
             } else {
-                cardsInHand += card + " - ";
+                cardsInHand += card + " + ";
             }
             counter--;
         }
-        return cardsInHand + " => " + getSum();
+        return cardsInHand + " => ( " + getSum() + " )";
     }
 
     public void addCardToHand (Card newCard){
