@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BlackJack {
-    static int defaultSleep = 1500;
+    static final int defaultSleep = 1500;
 
     private static ArrayList<Player> players = new ArrayList<>();
 
@@ -35,6 +35,7 @@ public class BlackJack {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        Scanner inputBalance = new Scanner(System.in);
 
 
         /*
@@ -63,7 +64,7 @@ public class BlackJack {
         //Idee: Start balance für alle Spieler gleich?
 
         for (int i = 0; i < player.length; i++) {
-            System.out.print("Please enter your name Player" + (i + 1) + ": ");
+            System.out.print("Please enter your name Player " + (i + 1) + ": ");
             String name = "";
             isValid = false;
             while (!isValid) {
@@ -81,21 +82,21 @@ public class BlackJack {
                     input.next();
                 }
             }
-            System.out.print("Please type in your starting balance: ");
+            System.out.print("Please type in your starting balance (10$ minimum): ");
 
             isValid = false;
             double balance = 0;
             while (!isValid) {
-                if (input.hasNextDouble()) {
+                if (inputBalance.hasNextDouble()) {
                     isValid = true;
-                    balance = Math.round(input.nextDouble() * 100.0) / 100.0;
-                    if (balance <= 0) {
+                    balance = Math.round(inputBalance.nextDouble() * 100.0) / 100.0;
+                    if (balance < 10) {
                         System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
                         isValid = false;
                     }
                 } else {
                     System.out.print("Please enter a valid number for your starting balance (10$ minimum): ");
-                    input.next();
+                    inputBalance.next();
                 }
             }
             player[i] = new Player(name, balance);
@@ -115,20 +116,19 @@ public class BlackJack {
         deck.shuffle();
 
         /*
-        Place bets
+        Place bets or skip round
          */
         while (playerCount != 0) {
             for (Player p : players) {
                 if (p.getPlaying()){
                     System.out.print(p.getName() + ", place your bet or type 0 to skip this round: ");
                     isValid = false;
+                    double currentBet = 0;
                     while (!isValid) {
                         if (input.hasNextDouble()) {
-                            double currentBet = input.nextDouble();
+                            currentBet = input.nextDouble();
                             if (currentBet < 0) {
-                                p.setPlaying(false);
-                                System.out.print("Insufficient balance, please try again: ");
-                                isValid = true;
+                                System.out.print("Invalid amount, please try again: ");
                             } else if (currentBet == 0) {
                                 p.setPlaying(false);
                                 System.out.println(p.getName() + " skips this round");
@@ -140,12 +140,13 @@ public class BlackJack {
                                     p.setBet(currentBet);
                                     isValid = true;
                                 } else {
-                                    System.out.print("Insufficient balance, please try again: ");
+                                    System.out.print("You are broke :) , please try again: ");
                                 }
                             }
                         } else {
-                            input.nextDouble();
                             System.out.print("Please enter a valid number for your bet: ");
+                            input.next();
+
                         }
                     }
                 }
@@ -290,19 +291,24 @@ public class BlackJack {
                         p.setPlaying(false);
                     }}
                 dealer.getHand().clearHand();
-
-
-                // TODO
-        /*
-        "Change Ace" method
-        (function to Double bet if first two cards match rank, player then has two hands to play with)
-        */
             }
+
         System.out.println();
         loading();
         System.out.println("\rThe house has won (obviously) because no players are left.");
         sleep(5000);
         }
+
+        //TODO
+        /*
+        "Change Ace" method
+        (function to Double bet if first two cards match rank, player then has two hands to play with)
+
+        Dealer Logic
+
+
+        */
+
 
 
 }

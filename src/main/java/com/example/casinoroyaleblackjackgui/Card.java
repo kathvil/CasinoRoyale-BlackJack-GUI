@@ -3,7 +3,7 @@ package com.example.casinoroyaleblackjackgui;
 public class Card {
 
     private Rank rank;
-    private Suit suit;
+    final private Suit suit;
     private int value;
 
     public Card(Rank rank, Suit suit) {

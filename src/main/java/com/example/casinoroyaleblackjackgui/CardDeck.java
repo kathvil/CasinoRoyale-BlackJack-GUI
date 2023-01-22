@@ -60,8 +60,6 @@ public class CardDeck {
             output += "\n";
             counter++;
         }
-
-
         return output;
     }
 
