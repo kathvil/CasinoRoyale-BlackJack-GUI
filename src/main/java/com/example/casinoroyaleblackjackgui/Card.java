@@ -18,8 +18,26 @@ public class Card {
         return rank.rankValue;
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String imageFilePath() {
+        return this.suit.suitName + "-" + this.rank.rankName + ".svg";
+    }
+
+    public String formatSuit(Suit suit) {
+        switch(suit) {
+            case CLUB: return "Clubs♣";
+            case DIAMOND: return "Diamonds♦";
+            case HEART: return "Hearts♥";
+            default:
+                return "Spades♠";
+        }
+    }
+
     @Override
     public String toString() {
-        return ("["+rank+" of "+ suit + "] ("+this.getValue()+")");
+        return ("["+rank+" of "+ formatSuit(suit) + "] ("+this.getValue()+")");
     }
 }

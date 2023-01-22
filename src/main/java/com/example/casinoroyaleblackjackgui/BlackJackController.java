@@ -14,15 +14,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class BlackJackController
 {
-    @FXML
-    private Label welcomeText;
 
     @FXML
-    private TextField playerInput;
+    private Button startRoundBtn;
 
     @FXML
     private VBox verticalBox;
@@ -52,6 +51,15 @@ public class BlackJackController
     private Button player2bet30;
     @FXML
     private Button player2Stand;
+    @FXML
+    private Text currentPlayer1;
+    @FXML
+    private Text currentPlayer2;
+    @FXML
+    private Text currentPlayer1Bet;
+
+    @FXML
+    private Text currentPlayer2Bet;
 
     private Stage stage;
     private Scene scene;
@@ -108,12 +116,16 @@ public class BlackJackController
         stage.setScene(scene);
         stage.show();
 
+        this.currentPlayer1.setText(playerName1.getText());
+        this.currentPlayer2.setText(playerName2.getText());
 
     }
 
     public void startRound(ActionEvent event){
+        this.startRoundBtn.setVisible(false);
 //        this.displayRoundStartDialogBox(this.players.get(0));
 //        this.displayRoundStartDialogBox(this.players.get(1));
+
     }
 //
 //    public void displayRoundStartDialogBox(Player player) {
@@ -143,14 +155,71 @@ public class BlackJackController
 //        bet.ifPresent(name -> System.out.println("Your name: " + playerName));
 //    }
 
+    // region player 1 bet
+    public void setBet10Player1() {
+        currentPlayer1Bet.setText("10");
+        changePlayer1ButtonVisibility(false);
+    }
+    public void setBet20Player1() {
+        currentPlayer1Bet.setText("20");
+        changePlayer1ButtonVisibility(false);
+    }
+    public void setBet30Player1() {
+        currentPlayer1Bet.setText("30");
+        changePlayer1ButtonVisibility(false);
+    }
 
-    public String getInput() {
-        return this.playerInput.getText();
+    // endregion
+
+    public void setBet10Player2() {
+        currentPlayer2Bet.setText("10");
+        changePlayer2ButtonVisibility(false);
     }
-    public String getPName1() {return this.playerName1.getText();
+    public void setBet20Player2() {
+        currentPlayer2Bet.setText("20");
+        changePlayer2ButtonVisibility(false);
     }
-    public String getPName2() {return this.playerName2.getText();
+    public void setBet30Player2() {
+        currentPlayer2Bet.setText("30");
+        changePlayer2ButtonVisibility(false);
     }
 
+
+    public void setStandPlayer1() {
+        currentPlayer1Bet.setVisible(true);
+    }
+    public void setStandPlayer2() {
+    }
+
+    public void changePlayer1ButtonVisibility(boolean value) {
+        player1bet10.setVisible(value);
+        player1bet20.setVisible(value);
+        player1bet30.setVisible(value);
+        player1Stand.setVisible(value);
+        currentPlayer1Bet.setVisible(!value);
+        // hit stand buttons visible
+    }
+    public void changePlayer2ButtonVisibility(boolean value) {
+        player2bet10.setVisible(value);
+        player2bet20.setVisible(value);
+        player2bet30.setVisible(value);
+        player2Stand.setVisible(value);
+        currentPlayer2Bet.setVisible(!value);
+        // hit stand buttons visible
+    }
+
+   public String getFirstPlayerName() {
+        return players.get(0).getName();
+   }
+   public String getFirstPlayerBalance() {
+        return "" + players.get(0).getBalance();
+   }
+
+    public String getSecondPlayerName() {
+        return players.get(1).getName();
+    }
+    public String getSecondPlayerBalance() {
+        return "" + players.get(1).getBalance();
+    }
 }
 
